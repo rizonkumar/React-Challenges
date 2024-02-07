@@ -14,8 +14,8 @@ const Challenge3 = () => {
     }, 5000);
 
     const timerInterval = setInterval(() => {
-      if (!messageChanged){
-          setTimerValue((prevValue) => prevValue + interval / 1000);
+      if (!messageChanged) {
+        setTimerValue((prevValue) => prevValue + interval / 1000);
       }
     }, interval);
 
