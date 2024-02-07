@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const FetchData = () => {
-  //   const API_ENDPOINT = `https://jsonplaceholder.typicode.com/users`;
-  //   const fetchUsers = async
-
   // store the fetched data
   const [data, setData] = useState([]);
   // to track if the data is still being fetched
@@ -20,12 +17,35 @@ const FetchData = () => {
         `https://jsonplaceholder.typicode.com/users`
       );
       const data = await response.json();
+
+      // update state witht the fetched data
+      setData(data);
+
+      // setloading to false since data fetching is complete
+      setLoading(false);
+
       console.log(data);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching data" + error);
     }
   };
-  return <div>FetchData</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Data is loading...</p>
+      ) : (
+        <ul>
+          {data.map((item) => (
+            <li key={item.id}>
+              <p>Name: {item.name}</p>
+              <p>Username: {item.username}</p>
+              <p>Email: {item.email}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default FetchData;
