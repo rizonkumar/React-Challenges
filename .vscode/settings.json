@@ -1,0 +1,6 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "reactSnippets.settings.prettierEnabled": true,
+    "prettier.enable": true
+}
