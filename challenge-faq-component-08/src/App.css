@@ -30,10 +30,6 @@ button {
   padding: 1px;
 }
 
-.arrow {
-  transform: rotate(90deg);
-}
-
 .ans {
   margin: 15px 0 5px 50px;
   color: gray;

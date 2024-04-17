@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
-const FAQItem = ({ faq, index }) => {
-  const [isShow, setIsShow] = useState(false);
-
-  useEffect(() => {
-    if (index === 0) {
-      setIsShow(true);
-    }
-  }, []);
-
+const FAQItem = ({ faq, index, isExpanded, onItemClick }) => {
   const handleClick = () => {
-    setIsShow((isShow) => !isShow);
+    onItemClick(index);
   };
+
   return (
     <div className="faq-box">
       <div className="que" onClick={handleClick}>
-        <button className={isShow ? "arrow" : ""}>></button>
+        <button>{isExpanded ? "-" : "+"}</button>
         <div>{faq.question}</div>
       </div>
-      {isShow && <div className="ans">{faq.answer}</div>}
+      {isExpanded && <div className="ans">{faq.answer}</div>}
     </div>
   );
 };
