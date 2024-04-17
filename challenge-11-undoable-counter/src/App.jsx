@@ -1,35 +1,94 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [value, setValue] = useState(0);
+  const [history, setHistory] = useState([]);
+  const [redoList, setRedoList] = useState([]);
+  const [undoCount, setUndoCount] = useState(0);
+
+  const maintainHistory = (key, prev, curr) => {
+    console.log(key, prev, curr);
+    const obj = {
+      action: key,
+      prev,
+      curr,
+    };
+    const copyHistory = [...history];
+    copyHistory.unshift(obj);
+    setHistory(copyHistory);
+  };
+
+  const handleClick = (key) => {
+    const val = parseInt(key);
+    console.log(key);
+    maintainHistory(key, value, val + value);
+    setValue((existingValue) => existingValue + val);
+  };
+
+  const handleUndo = () => {
+    // STACK LIFO
+    if (history.length) {
+      if (undoCount + 1 > 5) {
+        alert("You cannot undo beyound limit 5");
+        return;
+        setUndoCount((c) => c + 1);
+      }
+      const copyHistory = [...history];
+      const firstItem = copyHistory.shift();
+      setHistory(copyHistory);
+
+      setValue(firstItem.prev);
+      const copyRedoList = [...redoList];
+      copyRedoList.push(firstItem);
+      setRedoList(copyRedoList);
+    }
+  };
+
+  const handleRedo = () => {
+    // LIFO
+    if (redoList.length) {
+      const copyRedoList = [...redoList];
+      const poppedValue = copyRedoList.pop();
+      const { action, prev, curr } = poppedValue;
+      setValue(curr);
+      maintainHistory(action, prev, curr);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <h1>Undoable Counter</h1>
+
+      <div className="action-button">
+        <button onClick={handleUndo}>Undo</button>
+        <button onClick={handleRedo}>Redo</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="user-actions">
+        {[-100, -10, -1].map((btn) => {
+          return <button onClick={() => handleClick(btn)}>{btn}</button>;
+        })}
+
+        <div style={{ fontSize: 40 }}>{value}</div>
+
+        {["100", "10", "1"].map((btn) => {
+          return <button onClick={() => handleClick(btn)}>{btn}</button>;
+        })}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <div className="history">
+        {history.map((item) => {
+          return (
+            <div className="row">
+              <div>{item.action}</div>
+              <div>{`[${item.prev} -> ${item.curr}]`}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
