@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { items } from "./item";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const filters = ["Bags", "Watches", "Sports", "Sunglasses"];
+  const [filteredData, setFilteredData] = useState(items);
+  const [activeFilter, setActiveFilter] = useState([]);
 
+  const handleFilterClick = (e) => {
+    const category = e.target.id;
+    console.log(category);
+    if (activeFilter.includes(category)) {
+      // toogle false
+      const filters = activeFilter.filter((el) => el !== category);
+      console.log(filters);
+      setActiveFilter(filters);
+    } else {
+      // toogle true
+      setActiveFilter([...activeFilter, category]);
+    }
+  };
+  console.log("active filter", activeFilter);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="filters" onClick={handleFilterClick}>
+        {filters.map((item, index) => (
+          <button key={index} id={item}>
+            {item}
+          </button>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="product-list">
+        {filteredData.map((item, index) => (
+          <div className="item" key={index}>
+            <p>{item.name}</p>
+            <p className="category">{item.category}</p>
+          </div>
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
