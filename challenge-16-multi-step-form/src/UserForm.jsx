@@ -17,6 +17,7 @@ export const UserForm = (props) => {
 
       <label>{forms[index].label}</label>
       <input
+        required
         value={formData[forms[index].id]} // formData['name']
         id={forms[index].id}
         onChange={handleInputChange}
