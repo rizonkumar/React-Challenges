@@ -1,0 +1,37 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+input {
+  height: 26px;
+  font-size: 18px;
+  padding: 7px;
+  margin: 30px 0;
+}
+
+button {
+  width: 120px;
+  height: 45px;
+  border: none;
+  font-size: 18px;
+  background-color: purple;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
