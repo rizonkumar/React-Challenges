@@ -1,9 +1,8 @@
-import logo from './logo.svg'
-import './App.css';
-import AutoComplete from './components/autocomplete';
+import logo from "./logo.svg";
+import "./App.css";
+import AutoComplete from "./components/autocomplete";
 
 function App() {
-
   const staticData = [
     "apple",
     "banana",
@@ -18,9 +17,16 @@ function App() {
     "raspberry",
   ];
 
-  const fetchSuggestion = async () => {
-
-  }
+  const fetchSuggestion = async (query) => {
+    const response = await fetch(
+      `https://dummyjson.com/recipes/search?q=${query}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response is not ok");
+    }
+    const result = await response.json();
+    return result.recipes;
+  };
 
   return (
     <div className="App">
@@ -28,14 +34,16 @@ function App() {
 
       <AutoComplete
         placeholder={"Enter recipe"}
-        staticData = {staticData}
+        // staticData = {staticData}
         fetchSuggestion={fetchSuggestion}
         nameKey={"name"}
         customLoader={<p>Loading Recipes...</p>}
-        onSelect={(res) => { console.log(res) }}
-        onChange={(input) => { }}
-        onBlur={(e) => { }}
-        onFocus={(e) => { }}
+        onSelect={(res) => {
+          console.log(res);
+        }}
+        onChange={(input) => {}}
+        onBlur={(e) => {}}
+        onFocus={(e) => {}}
         customStyles={{}}
       />
     </div>
