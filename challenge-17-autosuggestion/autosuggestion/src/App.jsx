@@ -18,14 +18,20 @@ function App() {
   ];
 
   const fetchSuggestion = async (query) => {
-    const response = await fetch(
-      `https://dummyjson.com/recipes/search?q=${query}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response is not ok");
+    try {
+      const response = await fetch(
+        `https://dummyjson.com/recipes/search?q=${query}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response is not ok");
+      }
+      const result = await response.json();
+      return result.recipes;
+      
+    } catch (error) {
+      console.error("Failed to fetch suggestions", error);
+      return [];
     }
-    const result = await response.json();
-    return result.recipes;
   };
 
   return (
