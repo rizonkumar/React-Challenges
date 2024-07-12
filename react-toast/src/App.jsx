@@ -1,8 +1,11 @@
 import React from 'react'
+import Toast from './components/Toast'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Toast />
+    </div>
   )
 }
 
