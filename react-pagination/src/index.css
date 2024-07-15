@@ -33,3 +33,11 @@ img{
 .page-btn:hover{
     transform: scale(0.8);
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid red;
+    margin-bottom: 15px;
+}
