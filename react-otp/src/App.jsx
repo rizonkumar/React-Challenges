@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import OTP from './components/OTP'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-     
+     <OTP />
     </>
   )
 }
