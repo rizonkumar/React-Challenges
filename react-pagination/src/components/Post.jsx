@@ -18,6 +18,7 @@ const Post = () => {
         setError("Error fetching data. Please try again later");
       }
     };
+    fetchData();
   }, [pageNo]);
 
   return (
