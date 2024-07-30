@@ -1,0 +1,40 @@
+.tabs-container {
+    display: flex;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid #3498db;
+    color: #3498db;
+}
+
+.tabs-content {
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .tabs-container {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        width: 100%;
+        text-align: left;
+    }
+}

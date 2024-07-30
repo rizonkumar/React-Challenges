@@ -1,12 +1,15 @@
 import './App.css'
 import { Tab } from './components/Tab'
+import { tabsData } from './constants'
 
 function App() {
 
+  const onTabChangeHandler = (index) => {
+    console.log("Tab changed")
+  }
   return (
     <>
-      <p>Check</p>
-      <Tab />
+      <Tab onTabChangeHandler={onTabChangeHandler} tabsData={tabsData}/>
     </>
   )
 }
