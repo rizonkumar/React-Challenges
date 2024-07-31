@@ -1,0 +1,78 @@
+.stepper {
+    display: flex;
+    margin: 2rem;
+}
+
+.step-indicators {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+}
+
+.step-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.step-number {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #ccc;
+    margin-right: 1rem;
+}
+
+.step-number.active {
+    background-color: #017bfe;
+}
+
+.step-line {
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+    height: 2rem;
+    width: 2px;
+    background-color: #ccc;
+}
+
+.step-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.stepper-content {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    min-height: 300px;
+    position: relative;
+}
+
+.stepper-controls {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: #017bfe;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
