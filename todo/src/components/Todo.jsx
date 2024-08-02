@@ -23,7 +23,6 @@ export const Todo = () => {
   };
 
   const handleKeyDown = (e) => {
-    console.log(e);
     if (e.key === "Enter") {
       addTodo();
     }
@@ -43,6 +42,16 @@ export const Todo = () => {
     setTodos(newTodos);
   };
 
+  const updateToDo = (id, updatedVal) => {
+    const newTodos = todos.map((todo) => {
+      if(id === todo.id) {
+        return {...todo, value: updatedVal}
+      } else {
+        return todo;
+      }
+    })
+    setTodos(newTodos);
+  }
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -61,7 +70,7 @@ export const Todo = () => {
       <div>
         {todos.map((todo, index) => {
           return (
-            <List key={todo.id} todo={todo} completeTodo={completeTodo} deleteToDo={deleteToDo} />
+            <List key={todo.id} todo={todo} completeTodo={completeTodo} deleteToDo={deleteToDo} updateToDo={updateToDo} />
           );
         })}
       </div>
