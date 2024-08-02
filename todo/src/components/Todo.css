@@ -1,13 +1,23 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 0;
+}
+
 .todo-container {
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 h1 {
   text-align: center;
-  color: #333;
+  color: #2c3e50;
+  margin-bottom: 20px;
 }
 
 .input-container {
@@ -20,51 +30,70 @@ input[type="text"] {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4caf50;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
 }
 
 .todo-list {
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  overflow: hidden;
+  list-style-type: none;
+  padding: 0;
 }
 
 .todo-item {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  justify-content: space-between;
+  transition: all 0.3s ease;
 }
 
-.todo-item:last-child {
-  border-bottom: none;
+.todo-item:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .todo-text {
   flex-grow: 1;
+  margin-right: 10px;
 }
 
-.todo-actions button {
-  margin-left: 5px;
-  padding: 5px;
-  background-color: transparent;
-  border: none;
+.todo-actions {
+  display: flex;
+}
+
+.todo-actions span {
   cursor: pointer;
+  margin-left: 10px;
   font-size: 18px;
 }
 
-.completed .todo-text {
+.completed {
   text-decoration: line-through;
-  color: #888;
+  color: #7f8c8d;
+}
+
+.edit-input {
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
 }
