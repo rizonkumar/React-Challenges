@@ -1,7 +1,12 @@
 import "./App.css";
+import DayView from "./components/DayView";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <DayView />
+    </>
+  );
 }
 
 export default App;
