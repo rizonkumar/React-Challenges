@@ -14,7 +14,7 @@ export const List = ({ todo, completeTodo, deleteToDo, updateToDo }) => {
       {isEdit ? (
         <input
           className="edit-input"
-          value={updatedVal}
+          value={updatedVal}  
           type="text"
           onChange={(e) => setUpdatedVal(e.target.value)}
           onKeyDown={(e) => {
